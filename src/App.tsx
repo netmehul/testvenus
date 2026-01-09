@@ -7,6 +7,7 @@ import { SignInPage } from './pages/SignInPage';
 import { AccountPage } from './pages/AccountPage';
 import { ProductDetailPage } from './pages/ProductDetailPage';
 import { StudentOfferPage } from './pages/StudentOfferPage';
+import { StudentApplicationPage } from './pages/StudentApplicationPage';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/account" element={<AccountPage />} />
         <Route path="/product/:id" element={<ProductDetailPage />} />
         <Route path="/student-offers" element={<StudentOfferPage />} />
+        <Route path="/student-application" element={<StudentApplicationPage />} />
       </Routes>
 
       <Footer />

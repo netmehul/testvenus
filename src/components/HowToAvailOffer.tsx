@@ -5,6 +5,7 @@ import UploadIcon from '../assets/student-offer/icons/4-upload-doc.svg';
 import VerificationIcon from '../assets/student-offer/icons/5-verfication-24.svg';
 
 import DownloadFormPdf from '../assets/student-offer/Consent_form.pdf';
+import { Link } from 'react-router-dom';
 
 interface StepProps {
     number: number;
@@ -86,13 +87,16 @@ export const HowToAvailOffer = () => {
                         <a
                             href={DownloadFormPdf}
                             download="iVenus_Student_Offer_Consent_Form.pdf"
-                            className="px-8 py-4 border border-[#151515] rounded-[8px] text-[16px] font-medium text-[#151515] hover:bg-gray-50 transition-colors inline-flex items-center justify-center gap-2"
+                            className="px-6 py-2 border border-[#151515] rounded-[8px] text-[16px] font-medium text-[#151515] hover:bg-gray-50 transition-colors inline-flex items-center justify-center gap-2"
                         >
                             Download Form
                         </a>
-                        <button className="px-8 py-4 bg-[#525252] rounded-[8px] text-[16px] font-medium text-white hover:bg-[#424242] transition-colors inline-flex items-center justify-center">
+                        <Link
+                            to="/student-application"
+                            className="px-6 py-2 bg-[#525252] rounded-[8px] text-[16px] font-medium text-white hover:bg-[#424242] transition-colors inline-flex items-center justify-center"
+                        >
                             Get Started
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </div>

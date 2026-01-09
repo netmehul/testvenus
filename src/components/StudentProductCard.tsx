@@ -10,6 +10,8 @@ interface StudentProductCardProps {
     effectivePrice?: string;
     inStock?: boolean;
     description?: string;
+    onClick?: () => void;
+    isSelected?: boolean;
 }
 
 export function StudentProductCard({
@@ -20,12 +22,18 @@ export function StudentProductCard({
     educationDiscount,
     effectivePrice,
     inStock = true,
-    description = "Premium Apple product designed for students. Experience the best in class technology and performance."
+    description = "Premium Apple product designed for students. Experience the best in class technology and performance.",
+    onClick,
+    isSelected = false
 }: StudentProductCardProps) {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleCardClick = () => {
-        if (inStock) {
+        if (!inStock) return;
+
+        if (onClick) {
+            onClick();
+        } else {
             setIsModalOpen(true);
         }
     };
@@ -33,7 +41,12 @@ export function StudentProductCard({
     const cardContent = (
         <div
             onClick={handleCardClick}
-            className={`bg-white rounded-[14px] p-[14px] border border-gray-100 transition-all duration-300 flex flex-col h-full group cursor-pointer ${inStock ? 'hover:shadow-lg' : 'cursor-not-allowed opacity-80'}`}
+            className={`bg-white rounded-[14px] p-[14px] border transition-all duration-300 flex flex-col h-full group cursor-pointer 
+                ${inStock ? '' : 'cursor-not-allowed opacity-80'}
+                ${isSelected
+                    ? 'border-[#525252] shadow-[0px_0px_11.9px_0px_rgba(0,0,0,0.25)]'
+                    : 'border-white shadow-[0px_2px_8px_rgba(0,0,0,0.04)] hover:shadow-md'}
+            `}
         >
             {/* Image Container */}
             <div className="relative h-[200px] flex items-center justify-center p-2 rounded-[15px] overflow-hidden mb-3">
@@ -58,40 +71,40 @@ export function StudentProductCard({
             {/* Content */}
             <div className="flex flex-col gap-3">
                 <div className="flex justify-between items-center">
-                    <h3 className="font-['SF_Pro_Display',sans-serif] text-[16px] font-medium text-[#151515] leading-[22px]">{title}</h3>
-                    <span className="font-['SF_Pro_Display',sans-serif] text-[16px] font-medium text-[#151515]">{price}</span>
+                    <h3 className="font-sans text-[16px] font-medium text-[#151515] leading-[22px]">{title}</h3>
+                    <span className="font-sans text-[16px] font-medium text-[#151515]">{price}</span>
                 </div>
 
-                <div className="h-px bg-[#E5E5E5] w-full" />
+                <div className="h-[1px] bg-[#F5F5F7] w-full" />
 
                 {/* Details */}
                 <div className="flex flex-col gap-2">
                     {cashbackAmount && (
                         <div className="flex justify-between items-center">
                             <div className="flex items-center gap-2 text-[#525252]">
-                                <BadgePercent className="w-4 h-4" />
-                                <span className="text-[14px] font-medium">Instant Cashback</span>
+                                <BadgePercent className="w-[14px] h-[14px]" />
+                                <span className="text-[12px] font-medium">Instant Cashback</span>
                             </div>
-                            <span className="text-[14px] font-medium text-[#525252]">- {cashbackAmount}</span>
+                            <span className="text-[12px] font-medium text-[#525252]">- {cashbackAmount}</span>
                         </div>
                     )}
                     {educationDiscount && (
                         <div className="flex justify-between items-center">
                             <div className="flex items-center gap-2 text-[#525252]">
-                                <GraduationCap className="w-4 h-4" />
-                                <span className="text-[14px] font-medium">Education Discount</span>
+                                <GraduationCap className="w-[14px] h-[14px]" />
+                                <span className="text-[12px] font-medium">Education Discount</span>
                             </div>
-                            <span className="text-[14px] font-medium text-[#525252]">- {educationDiscount}</span>
+                            <span className="text-[12px] font-medium text-[#525252]">{educationDiscount}</span>
                         </div>
                     )}
                 </div>
 
-                <div className="h-px bg-[#E5E5E5] w-full" />
+                <div className="h-[1px] bg-[#F5F5F7] w-full" />
 
                 {/* Effective Price */}
-                <div className="flex justify-between items-center">
-                    <span className="font-['SF_Pro_Display',sans-serif] text-[16px] font-medium text-[#151515]">Effective Price</span>
-                    <span className="font-['SF_Pro_Display',sans-serif] text-[16px] font-medium text-[#151515]">{effectivePrice || price}</span>
+                <div className="flex justify-between items-center mt-1">
+                    <span className="font-sans text-[16px] font-medium text-[#151515]">Effective Price</span>
+                    <span className="font-sans text-[16px] font-medium text-[#151515]">{effectivePrice || price}</span>
                 </div>
             </div>
         </div>
