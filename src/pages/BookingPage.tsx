@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Breadcrumb } from '../components/Breadcrumb';
 import { products } from '../data/products';
 import { Search } from 'lucide-react';

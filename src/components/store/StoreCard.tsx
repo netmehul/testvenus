@@ -1,4 +1,4 @@
-import { MapPin, Phone, Clock } from 'lucide-react';
+import { MapPin, Clock } from 'lucide-react';
 
 export interface Store {
     name: string;
