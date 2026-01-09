@@ -8,7 +8,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ['"SF Pro Display"', 'system-ui', 'sans-serif'],
-        display: ['"Maven Pro"', 'sans-serif'],
+        display: ['"SF Pro Display"', 'sans-serif'],
       },
     },
   },

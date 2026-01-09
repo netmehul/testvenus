@@ -11,6 +11,7 @@ import { StudentApplicationPage } from './pages/StudentApplicationPage';
 
 import { BookingPage } from './pages/BookingPage';
 import { CheckoutPage } from './pages/CheckoutPage';
+import { ThankYouPage } from './pages/ThankYouPage';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/product/:id" element={<ProductDetailPage />} />
         <Route path="/book/:id" element={<BookingPage />} />
         <Route path="/checkout/:id" element={<CheckoutPage />} />
+        <Route path="/thank-you/:id" element={<ThankYouPage />} />
         <Route path="/student-offers" element={<StudentOfferPage />} />
         <Route path="/student-application" element={<StudentApplicationPage />} />
       </Routes>

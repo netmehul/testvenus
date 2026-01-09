@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { products } from '../data/products'; // Assuming we have access to products
 import { Breadcrumb } from '../components/Breadcrumb';
-import { BookingSummary } from '../components/product/BookingSummary';
+import { PickupBookingSummary } from '../components/checkout/PickupBookingSummary';
 import { CustomerDetails } from '../components/checkout/CustomerDetails';
 import type { Store } from '../components/store/StoreCard';
 
@@ -37,7 +37,7 @@ export function CheckoutPage() {
     if (!product) return <div>Product not found</div>;
 
     return (
-        <div className="container mx-auto px-4 py-8">
+        <div className="w-full">
             <Breadcrumb
                 items={[
                     { label: 'Home', path: '/' },
@@ -46,21 +46,22 @@ export function CheckoutPage() {
                     { label: 'Checkout', path: `/checkout/${id}` }
                 ]}
             />
+            <div className="container mx-auto px-4 py-8">
+                <h1 className="text-[32px] font-bold text-[#151515] mb-8 font-display">
+                    Checkout
+                </h1>
 
-            <h1 className="text-[32px] font-bold text-[#151515] mb-8 font-display">
-                Checkout
-            </h1>
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 relative items-start">
+                    {/* Left Column - 7 Cols */}
+                    <div className="lg:col-span-7">
+                        <CustomerDetails store={selectedStore} />
+                    </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 relative items-start">
-                {/* Left Column - 7 Cols */}
-                <div className="lg:col-span-7">
-                    <CustomerDetails store={selectedStore} />
-                </div>
-
-                {/* Right Sidebar - 5 Cols */}
-                <div className="lg:col-span-5 sticky top-8 flex flex-col gap-8 self-start">
-                    <BookingSummary product={product} />
-                    {/* showCheckout is undefined/false, so button won't show, which is correct for checkout page */}
+                    {/* Right Sidebar - 5 Cols */}
+                    <div className="lg:col-span-5 sticky top-8 flex flex-col gap-8 self-start">
+                        <PickupBookingSummary product={product} />
+                        {/* showCheckout is undefined/false, so button won't show, which is correct for checkout page */}
+                    </div>
                 </div>
             </div>
         </div>

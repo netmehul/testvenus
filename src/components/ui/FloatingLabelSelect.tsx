@@ -3,7 +3,7 @@ import { ChevronDown } from 'lucide-react';
 
 interface FloatingLabelSelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
     label: string;
-    options: string[];
+    options: (string | { value: string; label: string })[];
 }
 
 export function FloatingLabelSelect({ label, options, className = '', ...props }: FloatingLabelSelectProps) {
@@ -44,9 +44,13 @@ export function FloatingLabelSelect({ label, options, className = '', ...props }
                 }}
             >
                 <option value="" disabled hidden></option>
-                {options.map(option => (
-                    <option key={option} value={option}>{option}</option>
-                ))}
+                {options.map(option => {
+                    const value = typeof option === 'string' ? option : option.value;
+                    const label = typeof option === 'string' ? option : option.label;
+                    return (
+                        <option key={value} value={value}>{label}</option>
+                    );
+                })}
             </select>
             <label
                 className={`
