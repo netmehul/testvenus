@@ -1,4 +1,4 @@
-import { ArrowLeft, MapPin, CreditCard, ShoppingBag, X, Smartphone } from 'lucide-react';
+import { ArrowLeft, MapPin, Smartphone, X } from 'lucide-react';
 
 interface OrderDetailProps {
     orderId: string;

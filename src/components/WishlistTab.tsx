@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ShoppingBag, Bell, Percent, Flame, GraduationCap, X } from 'lucide-react';
+import { ShoppingBag, Bell, Percent, Flame, GraduationCap } from 'lucide-react';
 
 interface WishlistProduct {
     id: string;

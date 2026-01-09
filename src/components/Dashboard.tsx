@@ -1,4 +1,4 @@
-import { MapPin, User, Wrench, ArrowUpRight, Smartphone, Tablet, Laptop, Monitor } from 'lucide-react';
+import { MapPin, User, Wrench, ArrowUpRight, Smartphone, Tablet, Laptop } from 'lucide-react';
 
 export function Dashboard() {
     const kpis = [
