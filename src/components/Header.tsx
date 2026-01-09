@@ -20,9 +20,9 @@ export function Header() {
                 </div>
 
                 {/* Logo Section - Centered */}
-                <div className="flex items-center justify-center">
+                <Link to="/" className="flex items-center justify-center">
                     <img src={Logo} alt="iVenus Logo" className="h-10 md:h-12 w-auto object-contain" />
-                </div>
+                </Link>
 
                 {/* User Actions Section - White icons on black background */}
                 <div className="flex items-center justify-end gap-6 flex-1 max-w-sm">

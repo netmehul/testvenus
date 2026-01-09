@@ -17,7 +17,7 @@ const categories = [
     { name: 'Watch', icon: WatchIcon },
     { name: 'Audio', icon: AudioIcon },
     { name: 'Accessories', icon: AccessoriesIcon },
-    { name: 'Student Offers', icon: StudentIcon },
+    { name: 'Student Offers', icon: StudentIcon, path: '/student-offers' },
     { name: 'Care Centers', icon: CareIcon },
 ];
 

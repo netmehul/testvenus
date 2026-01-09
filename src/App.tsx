@@ -6,6 +6,7 @@ import { CategoryPage } from './pages/CategoryPage';
 import { SignInPage } from './pages/SignInPage';
 import { AccountPage } from './pages/AccountPage';
 import { ProductDetailPage } from './pages/ProductDetailPage';
+import { StudentOfferPage } from './pages/StudentOfferPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/signin" element={<SignInPage />} />
         <Route path="/account" element={<AccountPage />} />
         <Route path="/product/:id" element={<ProductDetailPage />} />
+        <Route path="/student-offers" element={<StudentOfferPage />} />
       </Routes>
 
       <Footer />

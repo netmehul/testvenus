@@ -4,7 +4,7 @@ import {
     Laptop,
     Watch,
     Music,
-    Headphones, // Fallback for Accessories if needed, or check for specific icon
+    Headphones,
     Phone,
     Mail,
     HelpCircle,
@@ -14,8 +14,11 @@ import {
     Linkedin,
     Apple
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import Logo from '../assets/AssetsFromUser/logo.png';
 
 const topNavItems = [
+    // ... (rest of the imports/consts remain same until the brand section)
     { name: 'iPhone', icon: Smartphone },
     { name: 'iPad', icon: Tablet },
     { name: 'Mac', icon: Laptop },
@@ -49,15 +52,11 @@ export function Footer() {
 
                     {/* Brand / Partner */}
                     <div className="flex items-center gap-6">
-                        <span className="font-display font-medium text-4xl tracking-tight text-white">iVenus</span>
-                        <div className="hidden sm:block w-px h-10 bg-gray-700"></div>
-                        <div className="border border-white/20 rounded-lg px-3 py-1.5 flex items-center gap-2 bg-white/5">
-                            <Apple className="w-5 h-5 fill-current" />
-                            <div className="flex flex-col leading-none">
-                                <span className="text-[10px] uppercase font-bold text-gray-400">Premium</span>
-                                <span className="text-[10px] uppercase font-bold text-white tracking-wide">Partner</span>
-                            </div>
-                        </div>
+                        <Link to="/">
+                            <img src={Logo} alt="iVenus Logo" className="h-10 md:h-12 w-auto object-contain invert brightness-0" />
+                        </Link>
+                        {/* <div className="hidden sm:block w-px h-10 bg-gray-700"></div> */}
+
                     </div>
 
                     {/* Product Nav */}
@@ -93,7 +92,11 @@ export function Footer() {
                         <ul className="space-y-3">
                             {usefulLinks.map((link) => (
                                 <li key={link}>
-                                    <a href="#" className="text-sm text-gray-400 hover:text-white transition-colors">{link}</a>
+                                    {link === 'Student Offer' ? (
+                                        <Link to="/student-offers" className="text-sm text-gray-400 hover:text-white transition-colors">{link}</Link>
+                                    ) : (
+                                        <a href="#" className="text-sm text-gray-400 hover:text-white transition-colors">{link}</a>
+                                    )}
                                 </li>
                             ))}
                         </ul>
