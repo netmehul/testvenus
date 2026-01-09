@@ -39,6 +39,7 @@ export function ProductDetailPage() {
                     <div>
                         <div className="bg-white rounded-[32px] p-4 lg:p-6 flex flex-col gap-8 shadow-sm border border-gray-100">
                             <ProductDetailsInfo
+                                id={product.id.toString()}
                                 title={product.title}
                                 price={product.price}
                                 originalPrice={product.originalPrice}

@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Info, Heart, ArrowRightLeft, Share2, ChevronRight } from 'lucide-react';
 import { VariantSlider, type VariantGroup } from './VariantSlider';
 import { type VariantOption } from './VariantSelector';
 import type { ProductColor, ProductOffer, VariantItem } from '../../data/products';
 
 interface ProductDetailsInfoProps {
+    id: string;
     title: string;
     price: string;
     originalPrice?: string;
@@ -17,6 +19,7 @@ interface ProductDetailsInfoProps {
 }
 
 export function ProductDetailsInfo({
+    id,
     title,
     price,
     originalPrice,
@@ -27,6 +30,7 @@ export function ProductDetailsInfo({
     coverageOptions = [],
     offers
 }: ProductDetailsInfoProps) {
+    const navigate = useNavigate();
     const [selectedColor, setSelectedColor] = useState(colors[0]);
     const [selectedStorageId, setSelectedStorageId] = useState<string | number>(storageOptions[0]?.id);
     const [selectedCoverageId, setSelectedCoverageId] = useState<string | number>(coverageOptions[0]?.id);
@@ -137,7 +141,10 @@ export function ProductDetailsInfo({
             {/* Actions */}
             <div className="flex flex-col gap-4">
                 <div className="grid grid-cols-2 gap-4">
-                    <button className="bg-[#525252] text-white py-4 rounded-xl font-medium hover:bg-[#333] transition-colors">
+                    <button
+                        onClick={() => navigate(`/book/${id}`)}
+                        className="bg-[#525252] text-white py-4 rounded-xl font-medium hover:bg-[#333] transition-colors"
+                    >
                         Book Online With Minimal
                     </button>
                     <button className="border border-gray-300 text-gray-800 py-4 rounded-xl font-medium hover:bg-gray-50 transition-colors">
