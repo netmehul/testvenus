@@ -50,7 +50,7 @@ export function JustLaunched() {
                    Let's match that structure.
                */}
                             <div className="absolute top-0 left-0 w-full p-6 z-10">
-                                <h3 className="font-display text-xl font-semibold text-gray-900 group-hover:text-indigo-600 transition-colors">
+                                <h3 className="font-display text-xl font-semibold text-gray-900 group-hover:text-[#525252] transition-colors">
                                     {product.name}
                                 </h3>
                             </div>

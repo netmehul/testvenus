@@ -122,7 +122,7 @@ export function WhyChooseIvanus() {
                         </h3>
 
                         <div className="flex items-end justify-between mt-4">
-                            <div className="w-[58px] h-[58px] text-gray-700 group-hover:text-indigo-600 transition-colors">
+                            <div className="w-[58px] h-[58px] text-gray-700 group-hover:text-[#525252] transition-colors">
                                 <feature.icon />
                             </div>
 
