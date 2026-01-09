@@ -43,8 +43,8 @@ export function TrustedBrands() {
                     <div key={index} className="group bg-[#F3F3F3] rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:shadow-gray-200/50 transition-all duration-300 flex flex-row">
 
                         {/* Text Content */}
-                        <div className="p-8 flex-1 flex flex-col">
-                            <div className="h-8 mb-4">
+                        <div className="p-4 flex-1 flex flex-col max-h-[250px] max-w-[250px] content-center">
+                            <div className="mb-4">
                                 {/* Logo */}
                                 {brand.logoImage ? (
                                     <img src={brand.logoImage} alt={brand.name} className="h-full object-contain" />
@@ -59,7 +59,7 @@ export function TrustedBrands() {
                                 </h3>
                             )}
 
-                            <p className="text-gray-600 mb-6 text-sm leading-relaxed">
+                            <p className="text-gray-600 mb-6 text-sm leading-relaxed line-clamp-2">
                                 {brand.description}
                             </p>
 

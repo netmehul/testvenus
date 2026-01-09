@@ -1,111 +1,152 @@
-import { Smartphone, Tablet, Laptop, Watch, Headphones, Mail, Phone, CreditCard } from 'lucide-react';
+import {
+    Smartphone,
+    Tablet,
+    Laptop,
+    Watch,
+    Music,
+    Headphones, // Fallback for Accessories if needed, or check for specific icon
+    Phone,
+    Mail,
+    HelpCircle,
+    Instagram,
+    Facebook,
+    Youtube,
+    Linkedin,
+    Apple
+} from 'lucide-react';
 
-const productNav = [
+const topNavItems = [
     { name: 'iPhone', icon: Smartphone },
     { name: 'iPad', icon: Tablet },
     { name: 'Mac', icon: Laptop },
     { name: 'Watch', icon: Watch },
-    { name: 'AirPods', icon: Headphones },
+    { name: 'Music', icon: Music },
+    { name: 'Accessories', icon: Headphones }, // Using Headphones as proxy for Accessories or Cable
 ];
 
-const shopLinks = [
-    'iPhone', 'iPad', 'Mac', 'Watch', 'AirPods', 'Accessories', 'Protection'
+const socialLinks = [
+    { icon: Instagram, href: '#' },
+    { icon: Facebook, href: '#' },
+    { icon: Youtube, href: '#' },
+    { icon: Linkedin, href: '#' },
 ];
 
-const aboutLinks = [
-    'About Us', 'Careers', 'Terms of Service', 'Privacy Policy'
+const usefulLinks = [
+    'About Us', 'Blogs', 'Service Centers', 'Care Plan Coverage', 'FAQs', 'Career Opportunity', 'Student Offer'
+];
+
+const policyLinks = [
+    'Disclaimer Policy', 'Terms and Conditions', 'Cancellation Returns and Refund', 'Shipping and Delivery Policy', 'Privacy Policy', 'Prebooking Terms and Conditions', 'Security'
 ];
 
 export function Footer() {
     return (
-        <footer className="bg-[#1D1D1F] pt-16 pb-8 border-t border-gray-800 text-white">
+        <footer className="bg-black text-white pt-16 pb-8 border-t border-gray-900">
             <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-                {/* Top Navigation Bar */}
-                <div className="flex flex-col md:flex-row justify-between items-center pb-12 border-b border-gray-800 gap-8">
-                    {/* Logo Placeholder */}
-                    <div className="flex items-center gap-2">
-                        <span className="font-display font-bold text-2xl tracking-tighter text-white">iVenus</span>
-                        <span className="bg-white text-black text-[10px] uppercase font-bold px-2 py-0.5 rounded-full tracking-wider">Premium Partner</span>
-                    </div>
 
-                    {/* Product Icons Nav */}
-                    <nav className="flex flex-wrap justify-center gap-8 md:gap-12">
-                        {productNav.map((item) => (
-                            <a key={item.name} href="#" className="flex flex-col items-center gap-2 group">
-                                <div className="bg-white/10 p-3 rounded-full shadow-sm group-hover:bg-white/20 transition-all text-gray-300 group-hover:text-white">
-                                    <item.icon className="w-5 h-5" />
-                                </div>
-                                <span className="text-xs font-semibold text-gray-400 group-hover:text-white transition-colors">{item.name}</span>
-                            </a>
-                        ))}
-                    </nav>
-                </div>
+                {/* Top Section */}
+                <div className="flex flex-col xl:flex-row justify-between items-center gap-8 pb-10 border-b border-gray-800">
 
-                {/* Main Footer Content */}
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-12 py-12">
-
-                    {/* Column 1: Shop */}
-                    <div className="md:col-span-3">
-                        <h3 className="font-display font-bold text-lg mb-6 text-white">Shop with iVenus</h3>
-                        <ul className="space-y-3">
-                            {shopLinks.map((link) => (
-                                <li key={link}>
-                                    <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm font-medium">{link}</a>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    {/* Column 2: About */}
-                    <div className="md:col-span-3">
-                        <h3 className="font-display font-bold text-lg mb-6 text-white">About iVenus</h3>
-                        <ul className="space-y-3">
-                            {aboutLinks.map((link) => (
-                                <li key={link}>
-                                    <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm font-medium">{link}</a>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    {/* Column 3: Contact */}
-                    <div className="md:col-span-6 bg-white/5 p-8 rounded-2xl border border-white/10">
-                        <h3 className="font-display font-bold text-xl mb-6 text-white">Contact Us</h3>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-
-                            <div className="space-y-1">
-                                <p className="text-xs font-bold uppercase tracking-wider text-gray-500">Sales Query</p>
-                                <a href="tel:+919712000979" className="flex items-center gap-2 font-display font-bold text-lg text-white hover:text-gray-300 transition-colors">
-                                    <Phone className="w-5 h-5" /> +91 97120 00979
-                                </a>
+                    {/* Brand / Partner */}
+                    <div className="flex items-center gap-6">
+                        <span className="font-display font-medium text-4xl tracking-tight text-white">iVenus</span>
+                        <div className="hidden sm:block w-px h-10 bg-gray-700"></div>
+                        <div className="border border-white/20 rounded-lg px-3 py-1.5 flex items-center gap-2 bg-white/5">
+                            <Apple className="w-5 h-5 fill-current" />
+                            <div className="flex flex-col leading-none">
+                                <span className="text-[10px] uppercase font-bold text-gray-400">Premium</span>
+                                <span className="text-[10px] uppercase font-bold text-white tracking-wide">Partner</span>
                             </div>
-
-                            <div className="space-y-1">
-                                <p className="text-xs font-bold uppercase tracking-wider text-gray-500">General Query</p>
-                                <a href="mailto:customercare@ivenus.in" className="flex items-center gap-2 font-display font-bold text-lg text-white hover:text-gray-300 transition-colors">
-                                    <Mail className="w-5 h-5" /> customercare@ivenus.in
-                                </a>
-                            </div>
-
-                            <div className="space-y-1 sm:col-span-2">
-                                <p className="text-xs font-bold uppercase tracking-wider text-gray-500">Service Query</p>
-                                <a href="#" className="flex items-center gap-2 font-display font-bold text-lg text-white hover:text-gray-300 transition-colors">
-                                    Click here for contact details
-                                </a>
-                            </div>
-
                         </div>
                     </div>
 
+                    {/* Product Nav */}
+                    <nav className="flex flex-wrap justify-center gap-6 sm:gap-10">
+                        {topNavItems.map((item) => (
+                            <a key={item.name} href="#" className="flex items-center gap-3 group">
+                                <item.icon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
+                                <span className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">{item.name}</span>
+                            </a>
+                        ))}
+                    </nav>
+
                 </div>
 
-                {/* Copyright */}
-                <div className="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
-                    <p>© 2025 iVenus. All Rights Reserved</p>
-                    <div className="flex gap-6">
-                        <CreditCard className="w-6 h-6 opacity-50" />
+                {/* Main Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 py-16">
+
+                    {/* Socials */}
+                    <div className="lg:col-span-3 space-y-6">
+                        <h3 className="font-bold text-lg text-white">Socials</h3>
+                        <div className="flex gap-4">
+                            {socialLinks.map((social, idx) => (
+                                <a key={idx} href={social.href} className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-all border border-white/5">
+                                    <social.icon className="w-5 h-5" />
+                                </a>
+                            ))}
+                        </div>
                     </div>
+
+                    {/* Useful Links */}
+                    <div className="lg:col-span-2 space-y-6">
+                        <h3 className="font-bold text-lg text-white">Useful Links</h3>
+                        <ul className="space-y-3">
+                            {usefulLinks.map((link) => (
+                                <li key={link}>
+                                    <a href="#" className="text-sm text-gray-400 hover:text-white transition-colors">{link}</a>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Policies */}
+                    <div className="lg:col-span-3 space-y-6">
+                        <h3 className="font-bold text-lg text-white">Policies</h3>
+                        <ul className="space-y-3">
+                            {policyLinks.map((link) => (
+                                <li key={link}>
+                                    <a href="#" className="text-sm text-gray-400 hover:text-white transition-colors">{link}</a>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Contact */}
+                    <div className="lg:col-span-4 space-y-8 pl-0 lg:pl-8">
+
+                        <div className="flex gap-4 items-start">
+                            <Phone className="w-6 h-6 text-gray-500 mt-1" />
+                            <div>
+                                <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Sales Query</p>
+                                <a href="tel:+919712000979" className="text-xl font-medium text-white hover:text-gray-300 transition-colors">+91 97120 00979</a>
+                            </div>
+                        </div>
+
+                        <div className="flex gap-4 items-start">
+                            <Mail className="w-6 h-6 text-gray-500 mt-1" />
+                            <div>
+                                <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">General Query:</p>
+                                <a href="mailto:customercare@ivenus.in" className="text-lg font-medium text-white hover:text-gray-300 transition-colors break-all">customercare@ivenus.in</a>
+                            </div>
+                        </div>
+
+                        <div className="flex gap-4 items-start">
+                            <HelpCircle className="w-6 h-6 text-gray-500 mt-1" />
+                            <div>
+                                <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Service Query</p>
+                                <a href="#" className="text-lg font-medium text-white hover:text-gray-300 transition-colors">Click here for contact details</a>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
+
+                {/* Bottom Bar */}
+                <div className="pt-8 border-t border-gray-900 text-center">
+                    <p className="text-sm text-gray-500">Copyright©2025 iVenus. All Rights Reserved</p>
+                </div>
+
             </div>
         </footer>
     );
