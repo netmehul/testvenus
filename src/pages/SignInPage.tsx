@@ -6,7 +6,7 @@ export function SignInPage() {
     const navigate = useNavigate();
     const [step, setStep] = useState<'mobile' | 'otp'>('mobile');
     const [mobile, setMobile] = useState('');
-    const [otp, setOtp] = useState('');
+    const [otpCode, setOtpCode] = useState(['', '', '', '']);
 
     const handleMobileSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -17,8 +17,29 @@ export function SignInPage() {
 
     const handleOtpSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (otp.length === 4) { // Dummy validation
+        const fullOtp = otpCode.join('');
+        if (fullOtp.length === 4) { // Dummy validation
             navigate('/account');
+        }
+    };
+
+    const handleOtpChange = (value: string, index: number) => {
+        if (/^\d*$/.test(value)) {
+            const newOtp = [...otpCode];
+            newOtp[index] = value.slice(-1);
+            setOtpCode(newOtp);
+
+            if (value && index < 3) {
+                const nextInput = document.getElementById(`otp-${index + 1}`);
+                nextInput?.focus();
+            }
+        }
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
+        if (e.key === 'Backspace' && !otpCode[index] && index > 0) {
+            const prevInput = document.getElementById(`otp-${index - 1}`);
+            prevInput?.focus();
         }
     };
 
@@ -86,27 +107,42 @@ export function SignInPage() {
                         </form>
                     ) : (
                         <form onSubmit={handleOtpSubmit} className="flex flex-col gap-6">
-                            <div className="flex flex-col gap-2">
-                                <input
-                                    type="text"
-                                    placeholder="Enter 4-digit OTP"
-                                    value={otp}
-                                    onChange={(e) => setOtp(e.target.value)} // Allow only numbers in real app
-                                    maxLength={4}
-                                    className="w-full h-[52px] px-4 rounded-[8px] border border-[#E5E5E5] text-[16px] text-[#151515] placeholder:text-[#949494] focus:outline-none focus:border-[#151515] transition-colors text-center tracking-[0.5em]"
-                                    autoFocus
-                                    required
-                                />
+                            <div className="flex flex-col gap-6">
+                                <div className="flex justify-center gap-4">
+                                    {otpCode.map((digit, idx) => (
+                                        <input
+                                            key={idx}
+                                            id={`otp-${idx}`}
+                                            type="text"
+                                            maxLength={1}
+                                            value={digit}
+                                            onChange={(e) => handleOtpChange(e.target.value, idx)}
+                                            onKeyDown={(e) => handleKeyDown(e, idx)}
+                                            className="w-[64px] h-[64px] text-[24px] font-semibold text-[#151515] text-center rounded-[12px] border border-[#E5E5E5] focus:border-[#151515] focus:ring-1 focus:ring-[#151515] outline-none transition-all shadow-sm"
+                                            autoFocus={idx === 0}
+                                            required
+                                        />
+                                    ))}
+                                </div>
                                 <p className="text-sm text-[#949494] text-center">
-                                    OTP sent to {mobile} <button type="button" onClick={() => setStep('mobile')} className="text-[#151515] font-medium underline">Edit</button>
+                                    OTP sent to {mobile} <button type="button" onClick={() => setStep('mobile')} className="text-[#151515] font-medium underline hover:text-black">Edit</button>
                                 </p>
                             </div>
 
                             <button
                                 type="submit"
-                                className="w-full h-[52px] bg-[#525252] text-white text-[16px] font-medium rounded-[8px] hover:bg-[#333] transition-colors"
+                                disabled={otpCode.some(d => !d)}
+                                className={`w-full h-[52px] text-[16px] font-medium rounded-[8px] transition-all
+                                    ${otpCode.every(d => d)
+                                        ? 'bg-[#525252] text-white hover:bg-[#333]'
+                                        : 'bg-[#eeeeee] text-[#949494] cursor-not-allowed'}
+                                `}
                             >
                                 Verify & Sign In
+                            </button>
+
+                            <button type="button" className="text-[14px] text-[#525252] font-medium hover:underline text-center">
+                                Resend OTP in 0:45
                             </button>
                         </form>
                     )}

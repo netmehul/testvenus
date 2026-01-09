@@ -7,7 +7,7 @@ interface AccountTabsProps {
 
 export function AccountTabs({ activeTab, onTabChange }: AccountTabsProps) {
     const tabs = [
-        { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
+        { id: 'overview', label: 'Overview', icon: LayoutDashboard },
         { id: 'orders', label: 'Orders', icon: Package },
         { id: 'wishlist', label: 'Wishlist', icon: Heart },
         { id: 'addresses', label: 'Addresses', icon: MapPin },

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Breadcrumb } from '../components/Breadcrumb';
 import { AccountProfileHeader } from '../components/AccountProfileHeader';
 import { AccountTabs } from '../components/AccountTabs';
-import { Dashboard } from '../components/Dashboard';
+import { Overview } from '../components/Overview';
 import { OrdersTab } from '../components/OrdersTab';
 import { OrderDetail } from '../components/OrderDetail';
 import { WishlistTab } from '../components/WishlistTab';
@@ -10,7 +10,7 @@ import { AddressTab } from '../components/AddressTab';
 import { AccountDetailsTab } from '../components/AccountDetailsTab';
 
 export function AccountPage() {
-    const [activeTab, setActiveTab] = useState('dashboard');
+    const [activeTab, setActiveTab] = useState('overview');
     const [selectedOrderId, setSelectedOrderId] = useState<string | null>(null);
 
     // Reset selected order when changing tabs
@@ -21,8 +21,8 @@ export function AccountPage() {
 
     const renderContent = () => {
         switch (activeTab) {
-            case 'dashboard':
-                return <Dashboard />;
+            case 'overview':
+                return <Overview />;
             case 'orders':
                 if (selectedOrderId) {
                     return <OrderDetail orderId={selectedOrderId} onBack={() => setSelectedOrderId(null)} />;

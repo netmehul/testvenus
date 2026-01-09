@@ -1,6 +1,6 @@
 import { MapPin, User, Wrench, ArrowUpRight, Smartphone, Tablet, Laptop } from 'lucide-react';
 
-export function Dashboard() {
+export function Overview() {
     const kpis = [
         { label: 'Total Orders', value: '3' },
         { label: 'Total Spend Value', value: '₹5,99,896' },
