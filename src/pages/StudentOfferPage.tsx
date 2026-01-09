@@ -48,6 +48,7 @@ export function StudentOfferPage() {
                                 effectivePrice: '₹74,900',
                                 cashbackAmount: '₹5,000',
                                 educationDiscount: '₹10,000',
+                                description: 'The ultimate iPad experience. Now with the break-through M4 chip, a world-class Ultra Retina XDR display, and superfast wireless connectivity.',
                             },
                             {
                                 id: 2,
@@ -57,6 +58,7 @@ export function StudentOfferPage() {
                                 effectivePrice: '₹49,900',
                                 cashbackAmount: '₹4,000',
                                 educationDiscount: '₹6,000',
+                                description: 'The redesigned 11-inch and all-new 13-inch iPad Air. Supercharged by the Apple M2 chip. Incredible Liquid Retina display.',
                             },
                             {
                                 id: 3,
@@ -66,6 +68,7 @@ export function StudentOfferPage() {
                                 effectivePrice: '₹37,900',
                                 cashbackAmount: '₹3,000',
                                 educationDiscount: '₹5,000',
+                                description: 'The all-new iPad is colorfully redesigned to be more capable, more intuitive, and even more fun.',
                             },
                             {
                                 id: 4,
@@ -75,6 +78,7 @@ export function StudentOfferPage() {
                                 effectivePrice: '₹41,900',
                                 cashbackAmount: '₹3,000',
                                 educationDiscount: '₹5,000',
+                                description: 'Mega power. Mini sized. The iPad mini experience in a compact and handheld design.',
                             }
                         ].map((product) => (
                             <StudentProductCard
@@ -85,7 +89,7 @@ export function StudentOfferPage() {
                                 image={product.img}
                                 cashbackAmount={product.cashbackAmount}
                                 educationDiscount={product.educationDiscount}
-                                productLink={`/product/${product.id}`}
+                                description={product.description}
                             />
                         ))}
                     </div>
@@ -115,6 +119,7 @@ export function StudentOfferPage() {
                                 effectivePrice: '₹1,69,900',
                                 cashbackAmount: '₹10,000',
                                 educationDiscount: '₹20,000',
+                                description: 'Mind-blowing. Head-turning. MacBook Pro with M3, M3 Pro, and M3 Max chips. The most advanced chips ever built for a personal computer.',
                             },
                             {
                                 id: 6,
@@ -124,6 +129,7 @@ export function StudentOfferPage() {
                                 effectivePrice: '₹84,900',
                                 cashbackAmount: '₹5,000',
                                 educationDiscount: '₹10,000',
+                                description: 'Power. It’s in the Air. Strikingly thin and fast, so you can work, play, or create anything — anywhere.',
                             },
                             {
                                 id: 7,
@@ -133,6 +139,7 @@ export function StudentOfferPage() {
                                 effectivePrice: '₹1,11,900',
                                 cashbackAmount: '₹8,000',
                                 educationDiscount: '₹10,000',
+                                description: 'Say hello to the new iMac. Inspired by the best of Apple. Transformed by the M3 chip. Stands out in any space.',
                             },
                             {
                                 id: 8,
@@ -142,6 +149,7 @@ export function StudentOfferPage() {
                                 effectivePrice: '₹49,900',
                                 cashbackAmount: '₹4,000',
                                 educationDiscount: '₹6,000',
+                                description: 'More muscle. More hustle. Mac mini with M2 and M2 Pro. Fast, versatile, and ready for work or play.',
                             }
                         ].map((product) => (
                             <StudentProductCard
@@ -152,7 +160,7 @@ export function StudentOfferPage() {
                                 image={product.img}
                                 cashbackAmount={product.cashbackAmount}
                                 educationDiscount={product.educationDiscount}
-                                productLink={`/product/${product.id}`}
+                                description={product.description}
                             />
                         ))}
                     </div>

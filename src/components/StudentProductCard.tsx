@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import { BadgePercent, GraduationCap } from 'lucide-react';
+import { useState } from 'react';
+import { BadgePercent, GraduationCap, X } from 'lucide-react';
 
 interface StudentProductCardProps {
     title: string;
@@ -9,7 +9,7 @@ interface StudentProductCardProps {
     educationDiscount?: string;
     effectivePrice?: string;
     inStock?: boolean;
-    productLink?: string;
+    description?: string;
 }
 
 export function StudentProductCard({
@@ -20,14 +20,23 @@ export function StudentProductCard({
     educationDiscount,
     effectivePrice,
     inStock = true,
-    productLink
+    description = "Premium Apple product designed for students. Experience the best in class technology and performance."
 }: StudentProductCardProps) {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleCardClick = () => {
+        if (inStock) {
+            setIsModalOpen(true);
+        }
+    };
+
     const cardContent = (
-        <div className="bg-white rounded-[14px] p-[14px] border border-gray-100 hover:shadow-lg transition-all duration-300 flex flex-col h-full group">
+        <div
+            onClick={handleCardClick}
+            className={`bg-white rounded-[14px] p-[14px] border border-gray-100 transition-all duration-300 flex flex-col h-full group cursor-pointer ${inStock ? 'hover:shadow-lg' : 'cursor-not-allowed opacity-80'}`}
+        >
             {/* Image Container */}
             <div className="relative h-[200px] flex items-center justify-center p-2 rounded-[15px] overflow-hidden mb-3">
-                {/* Product Image */}
-
                 {/* Product Image */}
                 <img
                     src={image}
@@ -88,14 +97,74 @@ export function StudentProductCard({
         </div>
     );
 
-    // If productLink is provided, wrap in Link, otherwise return as div
-    if (productLink && inStock) {
-        return (
-            <Link to={productLink} className="block h-full">
-                {cardContent}
-            </Link>
-        );
-    }
+    return (
+        <>
+            {cardContent}
 
-    return cardContent;
+            {/* Modal */}
+            {isModalOpen && (
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+                    <div
+                        className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+                        onClick={() => setIsModalOpen(false)}
+                    />
+                    <div className="bg-white rounded-[20px] w-full max-w-lg relative z-10 overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-300">
+                        <button
+                            onClick={() => setIsModalOpen(false)}
+                            className="absolute top-4 right-4 p-2 hover:bg-gray-100 rounded-full transition-colors"
+                        >
+                            <X className="w-5 h-5 text-gray-500" />
+                        </button>
+
+                        <div className="p-8">
+                            <div className="aspect-square w-48 mx-auto mb-6">
+                                <img src={image} alt={title} className="w-full h-full object-contain mix-blend-multiply" />
+                            </div>
+
+                            <h2 className="text-2xl font-semibold text-[#151515] mb-2">{title}</h2>
+                            <p className="text-[#525252] leading-relaxed mb-6">
+                                {description}
+                            </p>
+
+                            <div className="space-y-4">
+                                <div className="flex justify-between items-center py-3 border-b border-gray-100">
+                                    <span className="text-gray-500">M.R.P.</span>
+                                    <span className="font-medium">{price}</span>
+                                </div>
+                                {cashbackAmount && (
+                                    <div className="flex justify-between items-center py-3 border-b border-gray-100 text-green-600">
+                                        <span className="flex items-center gap-2">
+                                            <BadgePercent className="w-4 h-4" />
+                                            Instant Cashback
+                                        </span>
+                                        <span className="font-medium">- {cashbackAmount}</span>
+                                    </div>
+                                )}
+                                {educationDiscount && (
+                                    <div className="flex justify-between items-center py-3 border-b border-gray-100 text-[#7BA05B]">
+                                        <span className="flex items-center gap-2">
+                                            <GraduationCap className="w-4 h-4" />
+                                            Education Discount
+                                        </span>
+                                        <span className="font-medium">- {educationDiscount}</span>
+                                    </div>
+                                )}
+                                <div className="flex justify-between items-center pt-4">
+                                    <span className="text-lg font-semibold text-[#151515]">Effective Price</span>
+                                    <span className="text-xl font-bold text-[#151515]">{effectivePrice || price}</span>
+                                </div>
+                            </div>
+
+                            <button
+                                onClick={() => setIsModalOpen(false)}
+                                className="w-full mt-8 bg-[#151515] text-white py-4 rounded-xl font-semibold hover:bg-black transition-colors"
+                            >
+                                Close Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </>
+    );
 }
