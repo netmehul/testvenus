@@ -1,4 +1,5 @@
 import { ArrowRightLeft, Bell, Gift } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface ProductBadge {
     text: string;
@@ -6,6 +7,7 @@ interface ProductBadge {
 }
 
 interface CategoryProductCardProps {
+    id: number | string;
     title: string;
     price: string;
     originalPrice?: string;
@@ -17,6 +19,7 @@ interface CategoryProductCardProps {
 }
 
 export function CategoryProductCard({
+    id,
     title,
     price,
     originalPrice,
@@ -89,9 +92,12 @@ export function CategoryProductCard({
             <div className="mt-auto pt-2 grid grid-cols-2 gap-2">
                 {inStock ? (
                     <>
-                        <button className="bg-[#525252] hover:bg-[#333] text-white text-[14px] font-medium py-2.5 px-4 rounded-[8px] transition-colors">
+                        <Link
+                            to={`/product/${id}`}
+                            className="bg-[#525252] hover:bg-[#333] text-white text-[14px] font-medium py-2.5 px-4 rounded-[8px] transition-colors text-center"
+                        >
                             View
-                        </button>
+                        </Link>
                         <button className="border border-[#3C3C3C] text-[#525252] hover:bg-gray-50 text-[14px] font-medium py-2.5 px-4 rounded-[8px] flex items-center justify-center gap-2 transition-colors">
                             Compare
                             <ArrowRightLeft className="w-3.5 h-3.5" />
