@@ -1,4 +1,4 @@
-import { LayoutDashboard, Package, Heart, MapPin, User } from 'lucide-react';
+import { LayoutDashboard, Package, Heart, MapPin, User, ChevronDown } from 'lucide-react';
 
 interface AccountTabsProps {
     activeTab: string;
@@ -14,10 +14,38 @@ export function AccountTabs({ activeTab, onTabChange }: AccountTabsProps) {
         { id: 'details', label: 'Account Details', icon: User },
     ];
 
+    const activeTabObj = tabs.find(t => t.id === activeTab);
+    const ActiveIcon = activeTabObj ? activeTabObj.icon : LayoutDashboard;
+
     return (
-        <div className="mt-12 w-full">
+        <div className="mt-8 md:mt-12 w-full">
             <div className="container mx-auto px-4">
-                <div className="relative flex w-full border-b border-[#E5E5E5]">
+
+                {/* Mobile Dropdown */}
+                <div className="md:hidden w-full relative">
+                    <div className="relative w-full border border-[#E5E5E5] rounded-xl bg-white px-4 py-3.5 flex items-center justify-between shadow-sm focus-within:border-[#151515] transition-colors">
+                        <div className="flex items-center gap-3">
+                            <ActiveIcon className="w-5 h-5 text-[#151515]" />
+                            <span className="font-medium text-[#151515] text-base">{activeTabObj?.label}</span>
+                        </div>
+                        <ChevronDown className="w-5 h-5 text-[#525252]" />
+
+                        <select
+                            value={activeTab}
+                            onChange={(e) => onTabChange(e.target.value)}
+                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                        >
+                            {tabs.map((tab) => (
+                                <option key={tab.id} value={tab.id}>
+                                    {tab.label}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                </div>
+
+                {/* Desktop Tabs */}
+                <div className="hidden md:flex relative w-full border-b border-[#E5E5E5]">
                     {tabs.map((tab) => {
                         const Icon = tab.icon;
                         const isActive = activeTab === tab.id;
