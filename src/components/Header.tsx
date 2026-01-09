@@ -1,6 +1,7 @@
 import { Search, User, ShoppingBag } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Logo from '../assets/AssetsFromUser/logo.png';
+import { LocationSelector } from './LocationSelector';
 
 export function Header() {
     return (
@@ -26,6 +27,8 @@ export function Header() {
 
                 {/* User Actions Section - White icons on black background */}
                 <div className="flex items-center justify-end gap-6 flex-1 max-w-sm">
+                    <LocationSelector className="hidden md:flex" />
+
                     <Link to="/signin" className="p-2 hover:bg-gray-800 rounded-full transition-colors relative group">
                         <User className="w-6 h-6 text-white" />
                         <span className="sr-only">Account</span>
