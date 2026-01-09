@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Search, ChevronDown, Smartphone, Tablet, Laptop } from 'lucide-react';
+import { Search, ChevronDown, Smartphone, Tablet, Laptop, Download } from 'lucide-react';
 
 interface OrdersTabProps {
     onOrderClick?: (orderId: string) => void;
@@ -12,6 +12,7 @@ export function OrdersTab({ onOrderClick }: OrdersTabProps) {
     const orders = [
         {
             id: '#IVN-1523-5632',
+            date: 'Oct 12, 2023',
             product: 'iPhone 17 Pro',
             variant: 'Cosmic Orange, 512 GB',
             status: 'Delivered',
@@ -22,6 +23,7 @@ export function OrdersTab({ onOrderClick }: OrdersTabProps) {
         },
         {
             id: '#IVN-1523-5633',
+            date: 'Oct 14, 2023',
             product: 'iPad Pro M4',
             variant: 'Phantom Black, 256 GB',
             status: 'Shipped',
@@ -32,6 +34,7 @@ export function OrdersTab({ onOrderClick }: OrdersTabProps) {
         },
         {
             id: '#IVN-1523-5634',
+            date: 'Oct 15, 2023',
             product: 'Macbook Air',
             variant: 'Obsidian, 128 GB',
             status: 'In Transit',
@@ -42,6 +45,7 @@ export function OrdersTab({ onOrderClick }: OrdersTabProps) {
         },
         {
             id: '#IVN-1523-5635',
+            date: 'Oct 18, 2023',
             product: 'Macbook Pro',
             variant: 'Eternal Green, 256 GB',
             status: 'Pending',
@@ -52,6 +56,7 @@ export function OrdersTab({ onOrderClick }: OrdersTabProps) {
         },
         {
             id: '#IVN-1523-5636',
+            date: 'Oct 20, 2023',
             product: 'iPhone 16',
             variant: 'Ceramic White, 512 GB',
             status: 'Delivered',
@@ -133,16 +138,16 @@ export function OrdersTab({ onOrderClick }: OrdersTabProps) {
                         <thead>
                             <tr className="bg-gray-50/80">
                                 <th className="py-4 px-6 text-sm font-semibold text-gray-400">Order Id</th>
-                                <th className="py-4 px-6 text-sm font-semibold text-gray-400">Product</th>
+                                <th className="py-4 px-6 text-sm font-semibold text-gray-400">Date</th>
                                 <th className="py-4 px-6 text-sm font-semibold text-gray-400 text-center">Status</th>
                                 <th className="py-4 px-6 text-sm font-semibold text-gray-400 text-right">Amount</th>
+                                <th className="py-4 px-6 text-sm font-semibold text-gray-400 text-right pr-10">Invoice</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-100">
                             {orders
                                 .slice(0, itemsPerPage === 'All' ? undefined : itemsPerPage)
                                 .map((order) => {
-                                    const ProductIcon = order.icon;
                                     return (
                                         <tr
                                             key={order.id}
@@ -150,23 +155,25 @@ export function OrdersTab({ onOrderClick }: OrdersTabProps) {
                                             className="hover:bg-gray-50/50 transition-colors cursor-pointer"
                                         >
                                             <td className="py-4 px-6 text-sm font-medium text-[#151515]">{order.id}</td>
-                                            <td className="py-4 px-6">
-                                                <div className="flex items-center gap-4">
-                                                    <div className={`w-10 h-10 rounded-lg ${order.color} flex items-center justify-center shrink-0`}>
-                                                        <ProductIcon className={`w-6 h-6 ${order.iconColor}`} />
-                                                    </div>
-                                                    <div className="flex flex-col">
-                                                        <span className="text-sm font-semibold text-[#151515]">{order.product}</span>
-                                                        <span className="text-xs text-gray-500">{order.variant}</span>
-                                                    </div>
-                                                </div>
-                                            </td>
+                                            <td className="py-4 px-6 text-sm font-medium text-[#151515]">{order.date}</td>
                                             <td className="py-4 px-6 text-center">
                                                 <span className={`inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium ${getStatusStyles(order.status)}`}>
                                                     {order.status}
                                                 </span>
                                             </td>
                                             <td className="py-4 px-6 text-sm font-medium text-[#151515] text-right">{order.amount}</td>
+                                            <td className="py-4 px-6 text-right pr-6">
+                                                <button
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        // Handle download logic
+                                                    }}
+                                                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-[#151515]/10 hover:bg-gray-50 transition-colors text-xs font-medium text-[#151515] group/btn"
+                                                >
+                                                    <Download className="w-3.5 h-3.5 text-gray-400 group-hover/btn:text-[#E86C17] transition-colors" />
+                                                    <span>Invoice</span>
+                                                </button>
+                                            </td>
                                         </tr>
                                     )
                                 })}
