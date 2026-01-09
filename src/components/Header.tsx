@@ -1,4 +1,5 @@
 import { Search, User, ShoppingBag } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import Logo from '../assets/AssetsFromUser/logo.png';
 
 export function Header() {
@@ -25,10 +26,10 @@ export function Header() {
 
                 {/* User Actions Section - White icons on black background */}
                 <div className="flex items-center justify-end gap-6 flex-1 max-w-sm">
-                    <button className="p-2 hover:bg-gray-800 rounded-full transition-colors relative group">
+                    <Link to="/signin" className="p-2 hover:bg-gray-800 rounded-full transition-colors relative group">
                         <User className="w-6 h-6 text-white" />
                         <span className="sr-only">Account</span>
-                    </button>
+                    </Link>
                     <button className="p-2 hover:bg-gray-800 rounded-full transition-colors relative group">
                         <ShoppingBag className="w-6 h-6 text-white" />
                         <span className="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-black"></span>

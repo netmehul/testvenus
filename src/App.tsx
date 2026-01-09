@@ -3,6 +3,8 @@ import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { HomePage } from './pages/HomePage';
 import { CategoryPage } from './pages/CategoryPage';
+import { SignInPage } from './pages/SignInPage';
+import { AccountPage } from './pages/AccountPage';
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/category/:type" element={<CategoryPage />} />
+        <Route path="/signin" element={<SignInPage />} />
+        <Route path="/account" element={<AccountPage />} />
       </Routes>
 
       <Footer />
